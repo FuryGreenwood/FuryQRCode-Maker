@@ -4,11 +4,8 @@
 "(ES) Si va a trabajar dentro del script, se recomienda *NO GUARDAR* los cambios realizados en el script o al menos guardar sus diferentes configuraciones por separado."
 "(EN) If you're going to work inside the script, it's recommended *NOT TO SAVE* the changes made to the script or at least to save your different configurations separately."
 
-
 import qrcode
 from PIL import Image
-
-
 from qrcode.image.styledpil import StyledPilImage
 
 # Estilos de los cuadrados - Square Styles
@@ -38,13 +35,14 @@ from qrcode.image.styles.colormasks import VerticalGradiantColorMask     # color
 #logo = logo.resize((basewidth, hsize), Image.ANTIALIAS)
 
 "User-Input"
-data_input = input ('URL - Text: ')
-box_size_input = int (input ('Tamaño del código | Code size (2 > +): ')) 
-border_input = int (input ('Borde | Edge(0 > +): '))
+#data_input = input ('URL - Text: ')
+box_size_input = int (input ('Tamaño del código | Code size (+ > 2): ')) 
+border_input = int (input ('Borde | Edge (+ > 0): '))
 
 "Core"
 qr = qrcode.QRCode(error_correction = qrcode.constants.ERROR_CORRECT_L, box_size=box_size_input, border=border_input)
-qr.add_data (data_input)
+#qr.add_data (data_input)
+qr.add_data ('data here')
 qr.make(fit = True)
 # module_drawer = "Any Square Style (NAME)" - SolidFillColorMask(back_color=(x, x, x), front_color=(x, x, x)
 img = qr.make_image(image_factory = StyledPilImage, module_drawer = SquareModuleDrawer(), color_mask = SolidFillColorMask(back_color = (255, 255, 255), front_color = (0, 0, 0))).convert('RGB')
